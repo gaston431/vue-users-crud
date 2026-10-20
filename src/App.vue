@@ -3,7 +3,7 @@ import { onMounted } from 'vue'
 import UserForm from './components/UserForm.vue'
 import UserList from './components/UserList.vue'
 // import { useUsers } from './composables/useUsers.js'
-import { useUserStore } from './stores/userStore'
+// import { useUserStore } from './stores/userStore'
 
 // Extraemos todo lo que necesitamos usando desestructuración
 // const {
@@ -17,12 +17,12 @@ import { useUserStore } from './stores/userStore'
 //   handleClearEdit
 // } = useUsers()
 
-const store = useUserStore()
+// const store = useUserStore()
 
-// Cargar datos al montar el componente
-onMounted(() => {
-  store.loadUsers()
-})
+// // Cargar datos al montar el componente
+// onMounted(() => {
+//   store.loadUsers()
+// })
 </script>
 
 <template>

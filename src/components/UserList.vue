@@ -15,8 +15,18 @@ const store = useUserStore()
 
 <template>
   <div class="table-container">
+    <div class="search-box">
+      <label for="search">Buscar:</label>
+      <input 
+        id="search"
+        type="text" 
+        v-model="store.searchQuery" 
+        placeholder="Filtrar por nombre o email..."
+        class="search-input"
+      />
+    </div>
     <h3>Listado de Usuarios</h3>
-    <table v-if="store.users.length > 0">
+    <table v-if="store.filteredUsers.length > 0">
       <thead>
         <tr>
           <th>ID</th>
@@ -26,7 +36,7 @@ const store = useUserStore()
         </tr>
       </thead>
       <tbody>
-        <tr v-for="user in store.users" :key="user.id">
+        <tr v-for="user in store.filteredUsers" :key="user.id">
           <td>{{ user.id }}</td>
           <td>{{ user.name }}</td>
           <td>{{ user.email }}</td>
@@ -66,4 +76,18 @@ th {
 }
 .btn-edit { background-color: #3182ce; color: white; }
 .btn-delete { background-color: #e53e3e; color: white; }
+.search-box {
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.search-input {
+  padding: 6px 12px;
+  border: 1px solid #718096;
+  border-radius: 4px;
+  color: #000;
+  width: 100%;
+  max-width: 300px;
+}
 </style>

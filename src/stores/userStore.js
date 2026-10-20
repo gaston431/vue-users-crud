@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import router from '../router' 
 
 const API_URL = 'http://localhost:8000/users'
@@ -73,9 +73,20 @@ export const useUserStore = defineStore('userStore', () => {
     router.push('/')
   }
 
+  const searchQuery = ref('')
+  const filteredUsers = computed(() => {
+    if (!searchQuery.value) {
+      return users.value
+    }
+    return users.value.filter(user => user.name.toLowerCase().includes(searchQuery.value.toLowerCase())
+      || user.email.toLowerCase().includes(searchQuery.value.toLowerCase()))
+  })
+
   // Retornamos lo que queremos hacer público
   return {
     users,
+    filteredUsers,
+    searchQuery,
     currentUser,
     isLoading,
     loadUsers,
